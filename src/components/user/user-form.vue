@@ -22,20 +22,20 @@
       :error="error.patronymic"
     />
     <input-validate
-      :type="'date'"
+      type="date"
       name="dateBirths"
       items="Дата рождения"
       :$v="$v"
       :value.sync="$v.dateBirths.$model"
       :error="error.dateBirths"
     />
-    <!--    <input-validate-->
-    <!--      name="pol"-->
-    <!--      items="Пол"-->
-    <!--      :$v="$v"-->
-    <!--      :value.sync="$v.pol.$model"-->
-    <!--      :error="error.pol"-->
-    <!--    />-->
+    <!--        <input-validate-->
+    <!--          name="pol"-->
+    <!--          items="Пол"-->
+    <!--          :$v="$v"-->
+    <!--          :value.sync="$v.pol.$model"-->
+    <!--          :error="error.pol"-->
+    <!--        />-->
     <input-validate
       name="customerGroup"
       items="Группа клиентов"
@@ -43,6 +43,15 @@
       :value.sync="$v.customerGroup.$model"
       :error="error.customerGroup"
     />
+
+<!--    <input-validate-->
+<!--      type="checkbox"-->
+<!--      name="sms"-->
+<!--      items="Отправить СМС"-->
+<!--      :$v="$v"-->
+<!--      :value.sync="$v.sms.$model"-->
+<!--      :error="error.sms"-->
+<!--    />-->
   </form>
 </template>
 

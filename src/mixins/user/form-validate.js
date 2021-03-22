@@ -11,7 +11,7 @@ export default {
       customerGroup: "",
       pol: "",
       healingDoctor: "",
-      sms: "",
+      sms: false,
       addressIndex: "",
       addressCountry: "",
       addressArea: "",
