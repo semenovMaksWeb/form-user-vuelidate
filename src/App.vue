@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <user-form />
+    <div class="container">
+      <user-form />
+    </div>
   </div>
 </template>
 

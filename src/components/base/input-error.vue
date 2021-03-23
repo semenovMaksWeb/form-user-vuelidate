@@ -17,18 +17,14 @@ export default {
       request: true,
       type: Object,
     },
+    // Массив ошибок
     error: {
       request: true,
       type: Array,
-    },
-    name: {
-      request: true,
-      type: String,
     },
   },
 };
 </script>
 <style lang="sass">
-// .form_user-label
-// .form_user-input
+@import "src/assets/sass/base/base-errors"
 </style>

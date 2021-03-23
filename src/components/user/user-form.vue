@@ -1,71 +1,164 @@
 <template>
   <form>
-    <input-validate
-      name="name"
-      items="Имя"
-      :$v="$v"
-      :value.sync="$v.name.$model"
-      :error="error.name"
-    />
-    <input-validate
+    <h1 class="user_form-name">Форма регистрации клиента</h1>
+    <input-text
       name="surname"
       items="Фамилия"
-      :$v="$v"
-      :value.sync="$v.surname.$model"
+      :$v="$v.form"
+      :value.sync="$v.form.surname.$model"
       :error="error.surname"
     />
-    <input-validate
+    <input-text
+      name="name"
+      items="Имя"
+      :$v="$v.form"
+      :value.sync="$v.form.name.$model"
+      :error="error.name"
+    />
+    <input-text
       name="patronymic"
       items="Отчество"
-      :$v="$v"
-      :value.sync="$v.patronymic.$model"
+      :$v="$v.form"
+      :value.sync="$v.form.patronymic.$model"
       :error="error.patronymic"
     />
-    <input-validate
+    <input-text
+      name="phone"
+      items="Номер телефона"
+      :$v="$v.form"
+      :value.sync="$v.form.phone.$model"
+      :error="error.phone"
+    />
+    <input-text
       type="date"
       name="dateBirths"
       items="Дата рождения"
-      :$v="$v"
-      :value.sync="$v.dateBirths.$model"
+      :$v="$v.form"
+      :value.sync="$v.form.dateBirths.$model"
       :error="error.dateBirths"
     />
-    <!--        <input-validate-->
-    <!--          name="pol"-->
-    <!--          items="Пол"-->
-    <!--          :$v="$v"-->
-    <!--          :value.sync="$v.pol.$model"-->
-    <!--          :error="error.pol"-->
-    <!--        />-->
-    <input-validate
-      name="customerGroup"
-      items="Группа клиентов"
-      :$v="$v"
-      :value.sync="$v.customerGroup.$model"
+    <user-pol :$v="$v.form" :error="error" />
+    <user-customer-group
+      :$v="$v.form"
       :error="error.customerGroup"
+      :value.sync="$v.form.customerGroup.$model"
     />
-
-<!--    <input-validate-->
-<!--      type="checkbox"-->
-<!--      name="sms"-->
-<!--      items="Отправить СМС"-->
-<!--      :$v="$v"-->
-<!--      :value.sync="$v.sms.$model"-->
-<!--      :error="error.sms"-->
-<!--    />-->
+    <user-healing-doctor
+      :$v="$v.form"
+      :error="error.healingDoctor"
+      :value.sync="$v.form.healingDoctor.$model"
+    />
+    <input-checkbox
+      name="sms"
+      items="СМС"
+      :$v="$v.form"
+      :value.sync="$v.form.sms.$model"
+      :error="error.sms"
+    />
+    <input-text
+      name="addressIndex"
+      items="Индекс"
+      :$v="$v.form"
+      :value.sync="$v.form.addressIndex.$model"
+      :error="error.addressIndex"
+    />
+    <input-text
+      name="addressCountry"
+      items="Страна"
+      :$v="$v.form"
+      :value.sync="$v.form.addressCountry.$model"
+      :error="error.addressCountry"
+    />
+    <input-text
+      name="addressArea"
+      items="Область"
+      :$v="$v.form"
+      :value.sync="$v.form.addressArea.$model"
+      :error="error.addressArea"
+    />
+    <input-text
+      name="addressArea"
+      items="Город"
+      :$v="$v.form"
+      :value.sync="$v.form.addressCity.$model"
+      :error="error.addressCity"
+    />
+    <input-text
+      name="addressArea"
+      items="Улица"
+      :$v="$v.form"
+      :value.sync="$v.form.addressStreet.$model"
+      :error="error.addressStreet"
+    />
+    <input-text
+      name="addressHouse"
+      items="Дом"
+      :$v="$v.form"
+      :value.sync="$v.form.addressHouse.$model"
+      :error="error.addressHouse"
+    />
+    <user-document-type
+      :$v="$v.form"
+      :value.sync="$v.form.documentType.$model"
+      :error="error.documentType"
+    />
+    <input-text
+      name="documentSeries"
+      items="Серия"
+      :$v="$v.form"
+      :value.sync="$v.form.documentSeries.$model"
+      :error="error.documentSeries"
+    />
+    <input-text
+      name="documentNumber"
+      items="Номер"
+      :$v="$v.form"
+      :value.sync="$v.form.documentNumber.$model"
+      :error="error.documentNumber"
+    />
+    <input-text
+      name="documentIssued"
+      items="Кем выдан"
+      :$v="$v.form"
+      :value.sync="$v.form.documentIssued.$model"
+      :error="error.documentIssued"
+    />
+    <input-text
+      type="date"
+      name="documentDateIssued"
+      items="Дата выдачи"
+      :$v="$v.form"
+      :value.sync="$v.form.documentDateIssued.$model"
+      :error="error.documentDateIssued"
+    />
+    <user-button :$v="$v.form" />
   </form>
 </template>
 
 <script>
-import InputValidate from "@/components/base/input-validate";
+import InputText from "@/components/base/input-text";
 import mixinValidate from "@/mixins/user/form-validate";
 import mixinError from "@/mixins/user/error-validate";
+import InputCheckbox from "@/components/base/input-checkbox";
+import UserPol from "@/components/user/user-pol";
+import UserCustomerGroup from "@/components/user/select/user-customer-group";
+import UserHealingDoctor from "@/components/user/select/user-healing-doctor";
+import UserDocumentType from "@/components/user/select/document-type";
+import UserButton from "@/components/user/user-button";
 export default {
-  created() {
-    console.log(this);
-  },
   name: "user-form",
   mixins: [mixinValidate, mixinError],
-  components: { InputValidate },
+  components: {
+    UserButton,
+    UserDocumentType,
+    UserHealingDoctor,
+    UserCustomerGroup,
+    UserPol,
+    InputCheckbox,
+    InputText,
+  },
 };
 </script>
-<style lang="sass"></style>
+<style lang="sass">
+@import "src/assets/sass/user/user-form"
+</style>

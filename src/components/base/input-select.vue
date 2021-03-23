@@ -1,21 +1,26 @@
 <template>
-  <div class="">
-    <label class="form_user-label" :for="name">{{ items }}</label>
-    <input
+  <div class="base-item-input">
+    <input-label :required="$v[name]" :name="name" :items="items" />
+    <select
       v-bind="$attrs"
       v-model="propsValue"
-      class="form_user-input"
+      class="base-input"
       :id="name"
       :name="name"
-    />
+    >
+      <option :value="data.value" v-for="(data, index) in option" :key="index">
+        {{ data.text }}
+      </option>
+    </select>
     <input-error :$v="$v[name]" :error="error" />
   </div>
 </template>
 
 <script>
 import InputError from "@/components/base/input-error";
+import InputLabel from "@/components/base/input-label";
 export default {
-  name: "input-validate",
+  name: "input-select",
   computed: {
     propsValue: {
       get: function () {
@@ -26,10 +31,18 @@ export default {
       },
     },
   },
-  components: { InputError },
+  components: { InputLabel, InputError },
   props: {
+    // Массив выборов
+    option: {
+      type: Array,
+      required: true,
+    },
     // значения input
-    value: {},
+    value: {
+      type: null,
+      required: true,
+    },
     // названия input + id
     name: {
       type: String,
@@ -45,6 +58,7 @@ export default {
       type: Object,
       required: true,
     },
+    // объект ошибок
     error: {
       type: Array,
       required: true,
@@ -53,6 +67,5 @@ export default {
 };
 </script>
 <style lang="sass">
-// .form_user-label
-// .form_user-input
+@import "src/assets/sass/base/base-input"
 </style>
