@@ -2,9 +2,10 @@
   <input-select
     type="date"
     name="healingDoctor"
+    id="healingDoctor"
     items="Лечащий врач"
     :$v="$v"
-    :value.sync="$v.healingDoctor.$model"
+    :value.sync="$v.$model"
     :error="error"
     :option="healingDoctor"
   />

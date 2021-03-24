@@ -2,9 +2,10 @@
   <input-select
     type="date"
     name="documentType"
+    id="documentType"
     items="Тип документ"
     :$v="$v"
-    :value.sync="$v.documentType.$model"
+    :value.sync="$v.$model"
     :error="error"
     :option="documentType"
   />

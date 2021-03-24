@@ -3,22 +3,22 @@
     <div class="base-label">Пол</div>
     <div class="user_pol-item_input">
       <input-radio
+        name="pol"
         :id="'pol-1'"
         :value-radio="'М'"
-        name="pol"
         items="М"
         :$v="$v"
-        :value.sync="$v.pol.$model"
-        :error="error.pol"
+        :value.sync="$v.$model"
+        :error="error"
       />
       <input-radio
-        :id="'pol-2'"
-        :value-radio="'Ж'"
         name="pol"
+        :id="'pol-2'"
+        value-radio="Ж"
         items="Ж"
         :$v="$v"
-        :value.sync="$v.pol.$model"
-        :error="error.pol"
+        :value.sync="$v.$model"
+        :error="error"
       />
     </div>
   </div>
@@ -31,7 +31,7 @@ export default {
   components: { InputRadio },
   props: {
     error: {
-      type: Object,
+      type: Array,
       required: true,
     },
     $v: {

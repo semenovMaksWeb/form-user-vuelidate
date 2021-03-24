@@ -1,8 +1,8 @@
 <template>
   <div class="base-item-input">
-    <input-label :required="$v[name]" :name="name" :items="items" />
+    <input-label :required="$v" :name="$attrs.id" :items="items" />
     <div class="base-item-select_multiple">
-      <input readonly @click="click" :value="value" />
+      <input readonly @click="click" :value="value"  />
       <select
         :ref="'select'"
         @blur="sizeCheck = 0"
@@ -12,8 +12,6 @@
         v-bind="$attrs"
         v-model="propsValue"
         class="base-input base-select-multiple"
-        :id="name"
-        :name="name"
       >
         <option
           :value="data.value"
@@ -24,29 +22,21 @@
         </option>
       </select>
     </div>
-    <input-error :$v="$v[name]" :error="error" />
+    <input-error :$v="$v" :error="error" />
   </div>
 </template>
 
 <script>
 import InputError from "@/components/base/input-error";
 import InputLabel from "@/components/base/input-label";
+import ValidateElement from "@/mixins/base/validate-element.js";
 export default {
   name: "input-select-multiple",
+  mixins:[ValidateElement],
   data() {
     return {
       sizeCheck: 0,
     };
-  },
-  computed: {
-    propsValue: {
-      get: function () {
-        return this.value;
-      },
-      set: function (value) {
-        this.$emit("update:value", value);
-      },
-    },
   },
   methods: {
     click() {
@@ -64,31 +54,6 @@ export default {
     },
     // Массив выборов
     option: {
-      type: Array,
-      required: true,
-    },
-    // значения input
-    value: {
-      type: null,
-      required: true,
-    },
-    // названия input + id
-    name: {
-      type: String,
-      required: true,
-    },
-    // текст для input
-    items: {
-      type: String,
-      required: true,
-    },
-    // объект валидации
-    $v: {
-      type: Object,
-      required: true,
-    },
-    // объект ошибок
-    error: {
       type: Array,
       required: true,
     },

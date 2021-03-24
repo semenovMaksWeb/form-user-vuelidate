@@ -4,9 +4,10 @@
     multiple
     type="date"
     name="customerGroup"
+    id="customerGroup"
     items="Группа клиентов"
     :$v="$v"
-    :value.sync="$v.customerGroup.$model"
+    :value.sync="$v.$model"
     :error="error"
     :option="typeCustomer"
   />

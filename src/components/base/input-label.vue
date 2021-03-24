@@ -17,6 +17,7 @@ export default {
     // проверка обязательное ли это поле
     required: {
       type: Object,
+      required: true,
     },
     // текст label
     items: {
