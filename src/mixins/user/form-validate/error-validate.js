@@ -23,6 +23,10 @@ const error = {
       ifv: "required",
       text: "Укажите наш номер телефона",
     },
+    {
+      ifv: "phoneValidate",
+      text: "Не корреткно указан номер",
+    },
   ],
   customerGroup: [
     {

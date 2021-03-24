@@ -5,6 +5,7 @@
       v-bind="$attrs"
       v-model="propsValue"
       class="base-input"
+      v-on="$listeners"
     />
     <input-error :$v="$v" :error="error" />
   </div>
@@ -16,7 +17,7 @@ import InputLabel from "@/components/base/input-label";
 import ValidateElement from "@/mixins/base/validate-element.js";
 export default {
   name: "input-text",
-  mixins:[ValidateElement],
+  mixins: [ValidateElement],
   components: { InputLabel, InputError },
 };
 </script>

@@ -1,4 +1,9 @@
-import { required } from "vuelidate/lib/validators";
+import {
+  maxLength,
+  minLength,
+  required,
+  numeric,
+} from "vuelidate/lib/validators";
 
 export default {
   data() {
@@ -41,6 +46,9 @@ export default {
       },
       phone: {
         required,
+        phoneValidate: (value) => {
+          return value.length === 11;
+        },
       },
       customerGroup: {
         required,
