@@ -1,5 +1,5 @@
 <template>
-  <button @click.prevent="setUser">Сохранить</button>
+  <button class="user-button" @click.prevent="setUser">Сохранить</button>
 </template>
 
 <script lang="ts">
@@ -10,6 +10,10 @@ export default {
       type: Object,
       required: true,
     },
+    validate: {
+      type: Boolean,
+      required: true,
+    },
   },
   methods: {
     setUser() {
@@ -18,13 +22,16 @@ export default {
         console.log("error");
       } else {
         console.log("goot");
+        this.$emit("update:validate", true);
+        for (const dataKey in this.$v.$model) {
+          this.$v.$model[dataKey] = "";
+        }
+        this.$v.$reset();
       }
-      const data = {};
-      for (const dataKey in this.$v.$model) {
-        data[dataKey] = this.$v.$model[dataKey];
-      }
-      console.log(data);
     },
   },
 };
 </script>
+<style lang="sass">
+@import "src/assets/sass/user/user-button"
+</style>

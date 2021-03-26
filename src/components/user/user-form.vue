@@ -1,6 +1,7 @@
 <template>
   <section class="section-user-form">
     <div class="container">
+      <get-block-info :validate.sync="getBlogItem" />
       <h1 class="user_form-name">Форма регистрации клиента</h1>
       <form class="user-form">
         <div class="user-form-block">
@@ -160,7 +161,7 @@
           />
         </div>
       </form>
-      <user-button :$v="$v.form" />
+      <UserButton :$v="$v.form" :validate.sync="getBlogItem" />
     </div>
   </section>
 </template>
@@ -168,6 +169,7 @@
 <script>
 import InputText from "@/components/base/input-text";
 import mixinValidate from "@/mixins/user/form-validate/form-validate";
+import goodCreateUser from "@/mixins/user/get-good-create-user";
 import mixinError from "@/mixins/user/form-validate/error-validate";
 import InputCheckbox from "@/components/base/input-checkbox";
 import UserPol from "@/components/user/user-pol";
@@ -176,10 +178,12 @@ import UserHealingDoctor from "@/components/user/select/user-healing-doctor";
 import UserDocumentType from "@/components/user/select/document-type";
 import UserButton from "@/components/user/user-button";
 import PhoneValidate from "@/mixins/user/phone-validate";
+import GetBlockInfo from "@/components/base/get-block-info";
 export default {
   name: "user-form",
-  mixins: [mixinValidate, mixinError, PhoneValidate],
+  mixins: [mixinValidate, mixinError, PhoneValidate, goodCreateUser],
   components: {
+    GetBlockInfo,
     UserButton,
     UserDocumentType,
     UserHealingDoctor,

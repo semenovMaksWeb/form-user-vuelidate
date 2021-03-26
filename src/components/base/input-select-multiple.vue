@@ -2,7 +2,7 @@
   <div class="base-item-input">
     <input-label :required="$v" :name="$attrs.id" :items="items" />
     <div class="base-item-select_multiple">
-      <input readonly @click="click" :value="value"  />
+      <input readonly @click="click" :value="value" class="base-input"  />
       <select
         :ref="'select'"
         @blur="sizeCheck = 0"
